@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Timetable>
+
+@{
+    ViewBag.Title = "All Timetables";
+    Layout = "_AdminLayout";
+}
+
+<h1>Timetables</h1>
+<table class="table table-striped table-bordered table-sm">
+    <tr>
+        <th class="text-right">ID</th>
+        <th>Discipline</th>
+        <th>Date</th>
+        <th>Time Begin</th>
+        <th>Time End</th>
+        <th>Teacher</th>
+        <th>Group</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach (var item in Model) {
+    <tr>
+        <td class="text-right">@item.TimetableId</td>
+        <td>@item.Discipline?.Name</td>
+        <td>@item.Date.ToShortDateString()</td>
+        <td>@item.TimeBegin.ToShortTimeString()</td>
+        <td>@item.TimeEnd.ToShortTimeString()</td>
+        <td>@item.Teacher?.Name</td>
+        <td>@item.Group?.Name</td>
+        <td class="text-center">
+            <form asp-action="DeleteTimetable" method="post">
+                <a asp-action="EditTimetable" class="btn btn-sm btn-warning"
+                   asp-route-timetableId="@item.TimetableId">
+                    Edit
+                </a>
+                <input type="hidden" name="TimetableId" value="@item.TimetableId" />
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<div class="text-center">
+    <a asp-action="CreateTimetable" class="btn btn-primary">Add Timetable</a>
+</div>

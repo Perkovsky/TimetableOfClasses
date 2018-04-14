@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Discipline>
+
+@{
+    ViewBag.Title = "All Disciplines";
+    Layout = "_AdminLayout";
+}
+
+<h1>Disciplines</h1>
+<table class="table table-striped table-bordered table-sm">
+    <tr>
+        <th class="text-right">ID</th>
+        <th>Name</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach (var item in Model) {
+    <tr>
+        <td class="text-right">@item.DisciplineId</td>
+        <td>@item.Name</td>
+        <td class="text-center">
+            <form asp-action="DeleteDiscipline" method="post">
+                <a asp-action="EditDiscipline" class="btn btn-sm btn-warning"
+                   asp-route-disciplineId="@item.DisciplineId">
+                    Edit
+                </a>
+                <input type="hidden" name="DisciplineId" value="@item.DisciplineId" />
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<div class="text-center">
+    <a asp-action="CreateDiscipline" class="btn btn-primary">Add Discipline</a>
+</div>

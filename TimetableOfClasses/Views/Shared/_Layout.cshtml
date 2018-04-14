@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet"
+          asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/web-fonts-with-css/css/*.css" />
+    <title>Timetable Of Classes</title>
+</head>
+<body>
+    <div class="bg-success p-2 row">
+        <div class="col">
+            <h4 class="text-white">Timetable Of Classes</h4>
+        </div>
+        <div class="col-1">
+            <a class="btn btn-sm btn-primary" asp-action="Logout" asp-controller="Account">Logout</a>
+        </div>
+    </div>
+
+    <div class="row m-3">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model TimetableViewModel
+
+@{
+    ViewBag.Title = "Edit Timetable";
+    Layout = "_AdminLayout";
+}
+
+<h1>Create / Edit Timetable</h1>
+<form asp-action="EditTimetable" method="post">
+    <input type="hidden" asp-for="Timetable.TimetableId" />
+    <div class="form-group">
+        <label asp-for="Timetable.Date"></label>
+        <div><span asp-validation-for="Timetable.Date" class="text-danger"></span></div>
+        <input asp-for="Timetable.Date" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedDiscipline"></label>
+        <div><span asp-validation-for="SelectedDiscipline" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SelectedDiscipline" asp-items="@Model.Disciplines">
+            <option disabled selected value="">Select a Discipline</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Timetable.TimeBegin"></label>
+        <div><span asp-validation-for="Timetable.TimeBegin" class="text-danger"></span></div>
+        <input asp-for="Timetable.TimeBegin" type="time" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Timetable.TimeEnd"></label>
+        <div><span asp-validation-for="Timetable.TimeEnd" class="text-danger"></span></div>
+        <input asp-for="Timetable.TimeEnd" type="time" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedTeacher"></label>
+        <div><span asp-validation-for="SelectedTeacher" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SelectedTeacher" asp-items="@Model.Teachers">
+            <option disabled selected value="">Select a Teacher</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedGroup"></label>
+        <div><span asp-validation-for="SelectedGroup" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SelectedGroup" asp-items="@Model.Groups">
+            <option disabled selected value="">Select a Group</option>
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Timetables" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

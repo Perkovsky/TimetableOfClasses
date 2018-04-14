@@ -1,0 +1,39 @@
+﻿@model UserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "_AdminLayout";
+}
+
+<h1>Create / Edit User</h1>
+<form asp-action="EditUser" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedRole"></label>
+        <div><span asp-validation-for="SelectedRole" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SelectedRole" asp-items="@Model.Roles">
+            <option disabled selected value="">Select a Role</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+        @if (string.IsNullOrEmpty(Model.Id))
+        {
+            <input asp-for="Password" type="password" class="form-control" />
+        }
+        else
+        {
+            <input asp-for="Password" type="password" class="form-control" disabled />
+        }
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Users" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

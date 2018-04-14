@@ -1,0 +1,39 @@
+﻿@model TeacherViewModel
+@{
+    ViewBag.Title = "Edit Teacher";
+    Layout = "_AdminLayout";
+}
+
+<h1>Create / Edit Teacher</h1>
+<form asp-action="EditTeacher" method="post">
+    <input type="hidden" asp-for="Teacher.TeacherId" />
+    <div class="form-group">
+        <label asp-for="Teacher.Name"></label>
+        <div><span asp-validation-for="Teacher.Name" class="text-danger"></span></div>
+        <input asp-for="Teacher.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Teacher.Phone"></label>
+        <div><span asp-validation-for="Teacher.Phone" class="text-danger"></span></div>
+        <input asp-for="Teacher.Phone" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Disciplines</label>
+        @for (int i = 0; i < Model.AllDiscipline.Count(); i++)
+        {
+            <div class="form-check pl-3">
+                <input asp-for="DisciplineChecked[i].DisciplineId" type="hidden">
+                <label class="form-check-label">
+                    <input asp-for="DisciplineChecked[i].Checked"
+                           class="form-check-input" type="checkbox"> @Model.AllDiscipline[i].Name
+                    </label>
+                </div>
+            }
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Teachers" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
